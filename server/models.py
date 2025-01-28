@@ -4,6 +4,8 @@ db = SQLAlchemy()
 
 # to define User model
 class User(db.Model):
+    __tablename__ = "user"
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -11,6 +13,8 @@ class User(db.Model):
 
 # to define Song model
 class Song(db.Model):
+    __tablename__ = "songs"
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     artist = db.Column(db.String(100), nullable=False)
@@ -20,6 +24,8 @@ class Song(db.Model):
 
 # to define Playlist model
 class Playlist(db.Model):
+    __tablename__ = "playlist"
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -28,6 +34,8 @@ class Playlist(db.Model):
 
 # to define PlaylistSong model (many-to-many relationship)
 class PlaylistSong(db.Model):
+    __tablename__ = "PlaylistSong"
+    
     id = db.Column(db.Integer, primary_key=True)
     playlist_id = db.Column(db.Integer, db.ForeignKey('playlist.id'), nullable=False)
     song_id = db.Column(db.Integer, db.ForeignKey('song.id'), nullable=False)
